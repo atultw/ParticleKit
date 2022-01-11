@@ -4,7 +4,7 @@ Simple and extensible particle emitter!
 
 Useful for confetti, feedback to user actions etc
 
-https://i.ibb.co/pwBsXNV/Screen-Recording-2022-01-10-at-8-01-51-PM.gif
+![Demo](https://i.ibb.co/pwBsXNV/Screen-Recording-2022-01-10-at-8-01-51-PM.gif)
 
 ## Features
 
