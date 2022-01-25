@@ -16,22 +16,22 @@ public class ParticlesUIView: UIView {
     var emitterType: EmitterType
     var items: [Particle]
     
-    var creationRate: Int
-    var lifetime: Int
-    var speed: Int
+    var creationRate: Float
+    var lifetime: Float
+    var velocity: Float
     
     public init(items: [Particle],
                 emitterType: EmitterType,
                 frame: CGRect,
-                creationRate: Int = 20,
-                lifetime: Int = 10,
-                speed: Int = 200
+                creationRate: Float = 10,
+                lifetime: Float = 10,
+                velocity: Float = 100
     ) {
         self.items = items
         self.emitterType = emitterType
         self.creationRate = creationRate
         self.lifetime = lifetime
-        self.speed = speed
+        self.velocity = velocity
         super.init(frame: frame)
     }
     
@@ -47,6 +47,7 @@ public class ParticlesUIView: UIView {
         particlesEmitter.backgroundColor = UIColor.clear.cgColor
         particlesEmitter.emitterMode = .outline
         particlesEmitter.emitterShape = .line
+        particlesEmitter.velocity = velocity
         switch emitterType {
         case .point(let point):
             particlesEmitter.emitterSize = CGSize(width: 1.0, height: 1.0)
@@ -59,17 +60,17 @@ public class ParticlesUIView: UIView {
         particlesEmitter.emitterCells = items.map {
             let cell = CAEmitterCell()
             cell.contents = $0.createContents()
-            cell.birthRate = Float(creationRate)
-            cell.velocity = CGFloat(speed)
-            cell.lifetime = Float(lifetime)
+            cell.birthRate = creationRate
+            cell.velocity = 1
+            cell.lifetime = lifetime
             return $0.createCell(from: cell)
         }
-        stopParticles()
         particlesEmitter.beginTime = CACurrentMediaTime()
         layer.addSublayer(particlesEmitter)
     }
     
     func stopParticles() {
+//        particlesEmitter.beginTime = CACurrentMediaTime()
         self.particlesEmitter.birthRate = 0
     }
     

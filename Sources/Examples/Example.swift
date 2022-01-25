@@ -6,33 +6,38 @@ import SwiftUI
 import ParticleKit
 
 fileprivate struct SwiftUIView: View {
-    @State var active = true
+    @State var creationRate: Float = 5
+    @State var velocity: Float = 100
     var body: some View {
         VStack {
+            Text("Creation rate: \(creationRate)")
+            Text("Velocity: \(velocity)")
+            Slider(value: $creationRate, in: 0...10)
+            Slider(value: $velocity, in: 0...500)
             Button("Toggle") {
-                active.toggle()
+                (creationRate > 0) ? (creationRate = 0) : (creationRate = 1)
             }
             TabView {
-                ParticlesView(emitting: $active,
-                              items: [Emoji(of: "🎊")],
-                              size: (300, 500))
+                ParticlesView(items: [Emoji(of: "🌧")],
+                              size: (300, 500),
+                              creationRate: $creationRate,
+                              velocity: $velocity)
                     .tabItem {
                         Text("Default")
                     }
-                ParticlesView(emitting: $active,
-                              emitterType: .point(CGPoint(x: 100, y: 100)),
-                              items: [Emoji(of: "🎊", birthRate: 5)],
+                ParticlesView(emitterType: .point(CGPoint(x: 100, y: 100)),
+                              items: [Emoji(of: "🌧")],
                               size: (300, 500),
-                              creationRate: 5)
+                              creationRate: $creationRate,
+                              velocity: $velocity)
                     .tabItem {
                         Text("Single Point")
                     }
-                ParticlesView(emitting: $active,
-                              items: [Emoji(of: "🎊")],
+                ParticlesView(items: [Emoji(of: "🌧")],
                               size: (300, 500),
-                              creationRate: 5,
-                              lifetime: 5,
-                              speed: 100)
+                              creationRate: $creationRate,
+                              velocity: $velocity
+                )
                     .tabItem {
                         Text("Custom")
                     }

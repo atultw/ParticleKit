@@ -24,19 +24,11 @@ public extension String {
 }
 
 public struct Emoji: Particle {
-    public var birthRate: Int
-    
-    public var lifetime: Int
-    
-    public var speed: Int
     
     let emoji: String
     
-    public init(of emoji: String, birthRate: Int = 10, lifetime: Int = 8, speed: Int = 200) {
+    public init(of emoji: String) {
         self.emoji = emoji
-        self.birthRate = birthRate
-        self.lifetime = lifetime
-        self.speed = speed
     }
     
     public func createContents() -> CGImage? {
@@ -44,9 +36,6 @@ public struct Emoji: Particle {
     }
     
     public func createCell(from cell: CAEmitterCell) -> CAEmitterCell {
-//        cell.birthRate = Float(birthRate)
-//        cell.lifetime = Float(lifetime)
-//        cell.velocity = CGFloat(speed)
         cell.emissionLongitude = .pi
         cell.emissionRange = .pi / 4
         cell.spinRange = .pi * 2
