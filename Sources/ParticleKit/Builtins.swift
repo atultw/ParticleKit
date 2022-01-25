@@ -11,7 +11,7 @@ import UIKit
 // Credit to https://stackoverflow.com/questions/38809425/convert-apple-emoji-string-to-uiimage
 public extension String {
     func bitmapped() -> CGImage? {
-        let size = CGSize(width: 40, height: 40)
+        let size = CGSize(width: 45, height: 40)
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         UIColor.clear.set()
         let rect = CGRect(origin: .zero, size: size)

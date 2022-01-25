@@ -5,7 +5,7 @@
 import SwiftUI
 import ParticleKit
 
-fileprivate struct SwiftUIView: View {
+struct SwiftUIView: View {
     @State var creationRate: Float = 5
     @State var velocity: Float = 100
     var body: some View {
@@ -32,14 +32,6 @@ fileprivate struct SwiftUIView: View {
                               velocity: $velocity)
                     .tabItem {
                         Text("Single Point")
-                    }
-                ParticlesView(items: [Emoji(of: "🌧")],
-                              size: (300, 500),
-                              creationRate: $creationRate,
-                              velocity: $velocity
-                )
-                    .tabItem {
-                        Text("Custom")
                     }
             }
             

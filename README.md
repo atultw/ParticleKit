@@ -4,8 +4,6 @@ Simple and extensible particle emitter!
 
 Useful for confetti, feedback to user actions etc
 
-![Demo](https://i.ibb.co/pwBsXNV/Screen-Recording-2022-01-10-at-8-01-51-PM.gif)
-
 ## Features
 
 * Supports both SwiftUI and UIKit
@@ -19,7 +17,6 @@ Useful for confetti, feedback to user actions etc
 See `Examples/Example.swift` for an example SwiftUI implementation.
 
 Built-in `Emoji` particle for common use cases like confetti
-
 
 ## Contributing
 
