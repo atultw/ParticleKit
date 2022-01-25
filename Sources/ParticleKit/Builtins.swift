@@ -35,13 +35,12 @@ public struct Emoji: Particle {
         emoji.bitmapped()
     }
     
-    public func createCell(from cell: CAEmitterCell) -> CAEmitterCell {
+    public func configure(cell: CAEmitterCell) {
         cell.emissionLongitude = .pi
         cell.emissionRange = .pi / 4
         cell.spinRange = .pi * 2
         cell.scaleRange = 0.25
         cell.scale = 1.0 - cell.scaleRange
-        return cell
     }
 }
 

@@ -63,7 +63,16 @@ public class ParticlesUIView: UIView {
             cell.birthRate = creationRate
             cell.velocity = 1
             cell.lifetime = lifetime
-            return $0.createCell(from: cell)
+            
+            // default config. set these again if you need to
+            cell.emissionLongitude = .pi
+            cell.emissionRange = .pi / 4
+            cell.spinRange = .pi * 2
+            cell.scaleRange = 0.25
+            cell.scale = 1.0 - cell.scaleRange
+            
+            $0.configure(cell: cell)
+            return cell
         }
         particlesEmitter.beginTime = CACurrentMediaTime()
         layer.addSublayer(particlesEmitter)

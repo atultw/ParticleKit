@@ -39,5 +39,5 @@ struct Confetti: Item {
 */
 public protocol Particle {
     func createContents() -> CGImage?
-    func createCell(from cell: CAEmitterCell) -> CAEmitterCell
+    func configure(cell: CAEmitterCell)
 }
