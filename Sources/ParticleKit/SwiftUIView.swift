@@ -7,7 +7,7 @@ import SwiftUI
 public struct ParticlesView: UIViewRepresentable {
     var emitterType: EmitterType
     var size: (Int, Int)
-    var items: [Particle]
+    var items: [CAEmitterCell]
     
     @Binding var creationRate: Float
     @Binding var lifetime: Float
@@ -30,12 +30,75 @@ public struct ParticlesView: UIViewRepresentable {
 //    }
     
     public init(emitterType: EmitterType = .full,
-                items: [Particle], size: (Int, Int),
+                items: [CAEmitterCell],
+                size: (Int, Int),
                 creationRate: Binding<Float> = Binding.constant(10),
                 lifetime: Binding<Float> = Binding.constant(10),
                 velocity: Binding<Float> = Binding.constant(100)
     ) {
         self.items = items
+        self.emitterType = emitterType
+        self.size = size
+        self._creationRate = creationRate
+        self._lifetime = lifetime
+        self._velocity = velocity
+    }
+    
+    public init(emitterType: EmitterType = .full,
+                items: [Particle],
+                size: (Int, Int),
+                creationRate: Binding<Float> = Binding.constant(10),
+                lifetime: Binding<Float> = Binding.constant(10),
+                velocity: Binding<Float> = Binding.constant(100)
+    ) {
+        self.items = items.map {
+            let cell = CAEmitterCell()
+            cell.contents = $0.createContents()
+            cell.birthRate = 1
+            cell.velocity = 1
+            cell.lifetime = 1
+            
+            // default config. set these again if you need to
+            cell.emissionLongitude = .pi
+            cell.emissionRange = .pi / 4
+            cell.spinRange = .pi * 2
+            cell.scaleRange = 0.25
+            cell.scale = 1.0 - cell.scaleRange
+            
+            $0.configure(cell: cell)
+            
+            return cell
+        }
+        self.emitterType = emitterType
+        self.size = size
+        self._creationRate = creationRate
+        self._lifetime = lifetime
+        self._velocity = velocity
+    }
+    
+    public init(emitterType: EmitterType = .full,
+                items: [CGImage],
+                size: (Int, Int),
+                creationRate: Binding<Float> = Binding.constant(10),
+                lifetime: Binding<Float> = Binding.constant(10),
+                velocity: Binding<Float> = Binding.constant(100)
+    ) {
+        self.items = items.map {
+            let cell = CAEmitterCell()
+            cell.contents = $0
+            cell.birthRate = 1
+            cell.velocity = 1
+            cell.lifetime = 1
+            
+            // default config. set these again if you need to
+            cell.emissionLongitude = .pi
+            cell.emissionRange = .pi / 4
+            cell.spinRange = .pi * 2
+            cell.scaleRange = 0.25
+            cell.scale = 1.0 - cell.scaleRange
+            
+            return cell
+        }
         self.emitterType = emitterType
         self.size = size
         self._creationRate = creationRate

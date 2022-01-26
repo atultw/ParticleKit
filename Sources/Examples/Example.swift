@@ -42,7 +42,15 @@ struct SwiftUIView: View {
                               creationRate: Binding.constant(2.0),
                               velocity: $velocity)
                     .tabItem {
-                        Text("Single Point")
+                        Text("Custom")
+                    }
+                ParticlesView(emitterType: .point(CGPoint(x: 100, y: 100)),
+                              items: [UIImage(systemName: "person.circle")!.cgImage!],
+                              size: (300, 500),
+                              creationRate: Binding.constant(2.0),
+                              velocity: $velocity)
+                    .tabItem {
+                        Text("Direct image")
                     }
             }
             

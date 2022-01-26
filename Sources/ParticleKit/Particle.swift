@@ -23,21 +23,25 @@ struct Confetti: Item {
         // DO NOT SET CONTENTS!
         // cell.contents = createContents()
         cell.name = "Snow"
-        cell.birthRate = 20.0
-        cell.lifetime = 10.0
-        cell.velocity = CGFloat(cell.birthRate * cell.lifetime)
-        cell.velocityRange = cell.velocity / 2
-        cell.emissionLongitude = .pi
-        cell.emissionRange = .pi / 4
-        cell.spinRange = .pi * 2
-        cell.scaleRange = 0.25
-        cell.scale = 1.0 - cell.scaleRange
+        cell.birthRate = 20.0 // multiplied by the emitter birthRate (to make this particle faster or slower)
         return cell
     }
 }
 ```
 */
 public protocol Particle {
+    /// Return value will be applied as cell content.
     func createContents() -> CGImage?
+    /**
+     Default configuration already applied
+     ```
+     cell.emissionLongitude = .pi
+     cell.emissionRange = .pi / 4
+     cell.spinRange = .pi * 2
+     cell.scaleRange = 0.25
+     cell.scale = 1.0 - cell.scaleRange
+     ```
+     DO NOT set the cell content unless you wish to override the return from `createContents()`
+     */
     func configure(cell: CAEmitterCell)
 }
