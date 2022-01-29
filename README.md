@@ -26,6 +26,9 @@ If you want to add a feature or help out, check out the Issues tab to get starte
 
 This is based on the emitter I used in my app, Stride. It's meant to be simple. If you have a complex use case like multiple particles from different points or custom backgrounds, most of it can be done using SwiftUI modifiers + overlay or UIKit properties. If there is an addition that's globally useful please open an issue/PR.
 
+## Example
+
+See `Sources/Examples` for example SwiftUI usage. 
 
 ## FAQ
 
